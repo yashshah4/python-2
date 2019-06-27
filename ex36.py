@@ -3,18 +3,18 @@ from sys import exit
 print "You are Thanos and you need one more stone to finish your infinity gauntlet"
 print "There are three doors in front of you numbered 1-3"
 print "Each door has its own challenge but only one leads to the soul stone"
-survive = False
-
-def start(survive):
+survive1 = False
+survive2 = False
+def start():
     
     print "Choose the door you want to enter"
     
     door = int(raw_input("> "))
     
-    if door == 1 and not survive:
+    if door == 1 and not survive1:
         thor()
     
-    elif door == 2 and not survive:
+    elif door == 2 and not survive2:
         gamora()
         
     elif door == 3:
@@ -22,6 +22,7 @@ def start(survive):
         
     else:
         print "Use your head a bit, dodo! Give a valid input"
+        start()
 
 def thor():
     print "You enter the room where Thor is waiting for you with stormbreaker."
@@ -36,10 +37,11 @@ def thor():
         print "wrong move, storm breaker cuts you in two & you die."
         exit(0)
         
-    elif "use reality stone" in response:
+    elif "reality stone" in response:
         print "smart move, you survided the attack and killed Thor. You start again!"
-        survive = True
-        start(survive)
+        global survive1 
+        survive1 = True
+        start()
         
     else:
         print "Stupid move! Thor kills you and eats you for dinner. Bye Bye!"
@@ -56,8 +58,9 @@ def gamora():
             
     elif "kill" in response:
         print "You killed her and survived the room. you have to go back out & choose a room again."
-        survive = True
-        start(survive)
+        global survive2 
+        survive2 = True
+        start()
         
     else:
     
@@ -79,4 +82,4 @@ def snap():
         print "well good luck doing ",response," Bye Bye!"
         exit(0)
         
-start(survive)
+start()
